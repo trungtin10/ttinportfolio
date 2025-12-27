@@ -1,13 +1,9 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  output: 'export',      // Bắt buộc
-  trailingSlash: true,   // Rất quan trọng: Giúp GitHub hiểu các đường dẫn như /about/ hay /contact/
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export', // Bắt buộc để deploy GitHub Pages
+  basePath: '/trungtindev', // Tên repository của bạn
   images: {
-    unoptimized: true,   // Bắt buộc để hiển thị được ảnh trên GitHub Pages
+    unoptimized: true, // GitHub Pages không hỗ trợ tối ưu ảnh mặc định của Next.js
   },
-  // Nếu bạn dùng repo trungtin10.github.io thì KHÔNG cần basePath. 
-  // Nếu dùng repo khác (như /my-blog) thì mới cần thêm basePath: '/my-blog'.
 };
-
 export default nextConfig;
