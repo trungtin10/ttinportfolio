@@ -7,11 +7,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 export default function About() {
-  // --- QUAN TRỌNG: Cấu hình đường dẫn ảnh cho GitHub Pages ---
-  const REPO_PATH = "/ttinportfolio"; 
-  // Ghép đường dẫn: /ttinportfolio + /images/avt2.jpg
-  const avatarPath = `${REPO_PATH}/images/avt2.jpg`;
-
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -28,7 +23,7 @@ export default function About() {
         <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-indigo-200/30 blur-[120px] rounded-full"></div>
       </div>
 
-      {/* HEADER */}
+      {/* HEADER - Cập nhật vị trí Share nằm giữa Skills và Contact */}
       <header className="fixed top-0 left-0 right-0 bg-white/60 backdrop-blur-xl z-50 border-b border-white/40">
         <div className="max-w-6xl mx-auto flex justify-between items-center px-8 py-5">
           <Link href="/" className="group flex items-center gap-2 font-black text-xl tracking-tighter">
@@ -41,7 +36,10 @@ export default function About() {
             <Link href="/" className="hover:text-black transition-colors">Home</Link>
             <Link href="/about" className="text-blue-600 border-b-2 border-blue-600 pb-1">About</Link>
             <Link href="/skills" className="hover:text-black transition-colors">Skills</Link>
+            
+            {/* Share nằm giữa Skills và Contact */}
             <Link href="/share" className="hover:text-black transition-colors">Share</Link>
+            
             <Link href="/contact" className="hover:text-black transition-colors uppercase font-bold text-slate-400">
               Contact
             </Link>
@@ -62,8 +60,8 @@ export default function About() {
         >
           <div className="text-center mb-16" data-aos="fade-down">
              <span className="text-blue-600 font-mono text-[10px] mb-4 block tracking-[0.4em] uppercase font-bold">
-               // Personal Profile
-             </span>
+              // Personal Profile
+            </span>
             <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase">About Me</h1>
             <div className="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
           </div>
@@ -73,9 +71,8 @@ export default function About() {
             {/* LEFT COLUMN - Avatar */}
             <div className="flex flex-col items-center md:w-1/3 sticky top-40" data-aos="fade-right">
               <div className="relative w-64 h-80 rounded-[2rem] overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700">
-                {/* SỬ DỤNG BIẾN AVATAR PATH ĐÃ KHAI BÁO Ở TRÊN */}
                 <Image
-                  src={avatarPath}
+                  src="`${REPO_PATH}/images/avt2.jpg`"
                   alt="Trần Trung Tín"
                   fill
                   className="object-cover"
