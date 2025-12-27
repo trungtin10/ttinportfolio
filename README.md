@@ -1,20 +1,22 @@
-# 🚀 Trung Tin Portfolio - Next.js 
+# 🚀 Trung Tin Portfolio - Next.js
 
 Chào mừng bạn đến với kho lưu trữ mã nguồn trang web Portfolio cá nhân của mình!
 
-📍 **Xem trực tiếp tại:** [trungtin10.github.io/trungtindev](https://trungtin10.github.io/trungtindev/)
+📍 **Xem trực tiếp tại:** [trungtin10.github.io/ttinportfolio](https://trungtin10.github.io/ttinportfolio/)
 
 ---
 
 ## 👨‍💻 Về mình
+
 Mình là **Trần Trung Tín**, sinh viên năm cuối chuyên ngành **Công nghệ Phần mềm**.
 
-- 🎯 **Mục tiêu:** Trở thành một Software Engineer.
-- 💡 **Châm ngôn:** Build. Learn. Share.
+* 🎯 **Mục tiêu:** Trở thành một Software Engineer.
+* 💡 **Châm ngôn:** Build. Learn. Share.
 
 ---
 
 ## 🛠️ Công nghệ sử dụng
+
 * **Framework:** Next.js 14+ (App Router)
 * **Styling:** Tailwind CSS
 * **Animations:** Framer Motion
@@ -23,6 +25,9 @@ Mình là **Trần Trung Tín**, sinh viên năm cuối chuyên ngành **Công n
 ---
 
 ## 🚀 Cài đặt và Chạy thử (Local)
+
+Để chạy dự án này trên máy của bạn, hãy làm theo các bước sau:
+
 1. **Clone repository:**
    ```bash
-   git clone [https://github.com/trungtin10/trungtindev.git](https://github.com/trungtin10/trungtindev.git)"# ttinportfolio" 
+   git clone [https://github.com/trungtin10/ttinportfolio.git](https://github.com/trungtin10/ttinportfolio.git)
