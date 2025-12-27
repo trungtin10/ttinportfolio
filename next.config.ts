@@ -4,6 +4,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // THAY 'ttinportfolio' bằng tên Repository trên GitHub của bạn
+  basePath: '/ttinportfolio', 
 };
 
 export default nextConfig;
