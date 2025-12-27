@@ -169,18 +169,14 @@ export default function Home() {
                       <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[5rem] -z-10 group-hover:bg-blue-600 transition-colors"></div>
                       <h3 className="text-3xl font-bold mb-4 group-hover:text-blue-600 transition-colors">Lập trình Web & Hệ thống</h3>
                       <p className="text-slate-500 text-lg font-light">Phát triển ứng dụng hiện đại với React, Next.js và kiến trúc Backend tối ưu.</p>
-                      <Link href="/skills" className="mt-8 flex items-center gap-2 text-blue-600 font-bold text-xs uppercase group-hover:gap-4 transition-all">
-                        <span>Xem chi tiết</span> <span>→</span>
-                      </Link>
+                      {/* Đã xóa Link Xem chi tiết */}
                     </div>
 
                     <div className="group relative p-10 rounded-[3rem] bg-white border border-slate-100 shadow-xl hover:-translate-y-2 transition-all overflow-hidden">
                       <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-[5rem] -z-10 group-hover:bg-indigo-600 transition-colors"></div>
                       <h3 className="text-3xl font-bold mb-4 group-hover:text-indigo-600 transition-colors">Kỹ thuật phần mềm</h3>
                       <p className="text-slate-500 text-lg font-light">Áp dụng Clean Code, nguyên lý SOLID và tư duy giải quyết vấn đề thực tế.</p>
-                      <Link href="/about" className="mt-8 flex items-center gap-2 text-indigo-600 font-bold text-xs uppercase group-hover:gap-4 transition-all">
-                        <span>Xem chi tiết</span> <span>→</span>
-                      </Link>
+                      {/* Đã xóa Link Xem chi tiết */}
                     </div>
                   </div>
                 </section>

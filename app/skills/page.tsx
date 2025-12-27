@@ -8,6 +8,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaCode, FaServer, FaTools, FaDatabase, FaExternalLinkAlt, FaTimes, FaSearch } from 'react-icons/fa';
 import { SiNextdotjs, SiTailwindcss, SiJavascript, SiSpringboot, SiCisco, SiOracle } from 'react-icons/si';
 
+// --- KHAI BÁO ĐƯỜNG DẪN GỐC ---
+const REPO_PATH = "/ttinportfolio";
+
 // Định nghĩa Interfaces
 interface Certificate {
   title: string;
@@ -75,13 +78,14 @@ export default function SkillsPage() {
     }
   ];
 
+  // --- CẬP NHẬT ĐƯỜNG DẪN ẢNH VỚI BIẾN REPO_PATH ---
   const certificates: Certificate[] = [
     {
       title: "Networking Basics",
       issuer: "Cisco Networking Academy",
       date: "Nov 23, 2025",
       icon: <SiCisco />,
-      image: "/images/networking.png", 
+      image: `${REPO_PATH}/images/networking.png`, 
       delay: 0
     },
     {
@@ -89,7 +93,7 @@ export default function SkillsPage() {
       issuer: "Cisco Networking Academy / OpenEDG",
       date: "Nov 23, 2025",
       icon: <SiJavascript className="text-yellow-400" />, 
-      image: "/images/jv1.png",
+      image: `${REPO_PATH}/images/jv1.png`,
       delay: 100
     },
     {
@@ -97,7 +101,7 @@ export default function SkillsPage() {
       issuer: "Oracle / Coursera",
       date: "Oct 2023",
       icon: <SiOracle className="text-[#f80000]" />, 
-      image: "/images/jv2.png",
+      image: `${REPO_PATH}/images/jv2.png`,
       delay: 200
     }
   ];
@@ -120,7 +124,14 @@ export default function SkillsPage() {
             >
               <button onClick={() => setSelectedCert(null)} className="absolute top-6 right-6 text-slate-400 hover:text-black z-20 transition-colors text-2xl"><FaTimes /></button>
               <div className="relative aspect-[1.414/1] w-full bg-white">
-                <Image src={selectedCert.image} alt={selectedCert.title} fill className="object-contain p-4 md:p-8" priority />
+                <Image 
+                    src={selectedCert.image} 
+                    alt={selectedCert.title} 
+                    fill 
+                    className="object-contain p-4 md:p-8" 
+                    priority 
+                    unoptimized={true} 
+                />
               </div>
               <div className="p-8 bg-white border-t flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
                 <div>
@@ -140,7 +151,7 @@ export default function SkillsPage() {
         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-200/30 blur-[120px] rounded-full"></div>
       </div>
 
-      {/* HEADER - Đã cập nhật Logo và vị trí Share */}
+      {/* HEADER */}
       <header className="fixed top-0 left-0 right-0 bg-white/60 backdrop-blur-xl z-50 border-b border-white/40">
         <div className="max-w-6xl mx-auto flex justify-between items-center px-8 py-5">
           <Link href="/" className="group flex items-center gap-2 font-black text-xl tracking-tighter">
@@ -152,10 +163,7 @@ export default function SkillsPage() {
             <Link href="/" className="hover:text-black transition-colors">Home</Link>
             <Link href="/about" className="hover:text-black transition-colors">About</Link>
             <Link href="/skills" className="text-blue-600 border-b-2 border-blue-600 pb-1">Skills</Link>
-            
-            {/* Share nằm giữa Skills và Contact */}
             <Link href="/share" className="hover:text-black transition-colors">Share</Link>
-            
             <Link href="/contact" className="hover:text-black transition-colors uppercase font-bold text-slate-400">
               Contact
             </Link>
