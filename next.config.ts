@@ -3,10 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: 'export',
   images: {
-    unoptimized: true,
+    unoptimized: true, // Bắt buộc dòng này để hiện ảnh
   },
-  // Tên repo của bạn là ttinportfolio, nên basePath phải y hệt
-  basePath: "/ttinportfolio", 
+  basePath: "/ttinportfolio", // Bắt buộc dòng này để chạy trên Github
 };
 
 export default nextConfig;

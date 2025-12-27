@@ -8,8 +8,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  // State kiểm soát việc hiển thị nội dung chi tiết
   const [showDetails, setShowDetails] = useState(false);
+
+  // --- QUAN TRỌNG: Cấu hình đường dẫn ảnh ---
+  // Vì web chạy trên GitHub Pages trong thư mục /ttinportfolio
+  // nên phải thêm tiền tố này vào trước đường dẫn ảnh.
+  const REPO_PATH = "/ttinportfolio"; 
+  const avatarPath = `${REPO_PATH}/images/avtt.jpg`;
 
   useEffect(() => {
     AOS.init({
@@ -19,10 +24,8 @@ export default function Home() {
     });
   }, []);
 
-  // Hàm xử lý Toggle: Bấm lần 1 hiện/cuộn xuống, bấm lần 2 ẩn/cuộn lên
   const handleExploreToggle = () => {
     if (!showDetails) {
-      // Nếu đang ẩn -> Hiện nội dung và cuộn xuống
       setShowDetails(true);
       setTimeout(() => {
         const element = document.getElementById('details-content');
@@ -31,9 +34,7 @@ export default function Home() {
         }
       }, 100);
     } else {
-      // Nếu đang hiện -> Cuộn lên đầu trang mượt mà
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Đợi hiệu ứng cuộn lên hoàn tất (khoảng 600ms) rồi mới đóng nội dung
       setTimeout(() => {
         setShowDetails(false);
       }, 600);
@@ -43,7 +44,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#f8faff] text-slate-900 font-sans selection:bg-blue-100 overflow-x-hidden relative">
       
-      {/* 1. MODAL PROFILE (Hiển thị khi click vào icon 👤) */}
+      {/* 1. MODAL PROFILE */}
       <AnimatePresence>
         {isProfileOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -61,7 +62,8 @@ export default function Home() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="relative w-full max-w-sm aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white z-10"
             >
-              <Image src="/images/avtt.jpg" alt="Profile" fill className="object-cover" />
+              {/* SỬ DỤNG BIẾN AVATAR PATH */}
+              <Image src={avatarPath} alt="Profile" fill className="object-cover" />
               <button onClick={() => setIsProfileOpen(false)} className="absolute top-4 right-4 w-8 h-8 bg-black/50 text-white rounded-full flex items-center justify-center">✕</button>
             </motion.div>
           </div>
@@ -74,7 +76,7 @@ export default function Home() {
         <div className="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] bg-sky-100/50 blur-[120px] rounded-full"></div>
       </div>
 
-      {/* HEADER - ĐIỀU HƯỚNG CHUẨN */}
+      {/* HEADER */}
       <header className="fixed top-0 left-0 right-0 bg-white/60 backdrop-blur-xl z-50 border-b border-white/40">
         <div className="max-w-6xl mx-auto flex justify-between items-center px-8 py-5">
           <Link href="/" className="group flex items-center gap-2 font-black text-xl tracking-tighter">
@@ -87,10 +89,7 @@ export default function Home() {
             <Link href="/" className="text-blue-600 border-b-2 border-blue-600 pb-1">Home</Link>
             <Link href="/about" className="hover:text-black transition-colors">About</Link>
             <Link href="/skills" className="hover:text-black transition-colors">Skills</Link>
-            
-            {/* ĐÃ DỜI SHARE XUỐNG ĐÂY - NẰM GIỮA SKILLS VÀ CONTACT */}
             <Link href="/share" className="hover:text-black transition-colors">Share</Link>
-            
             <Link href="/contact" className="hover:text-black transition-colors uppercase font-bold text-slate-400">
               Contact
             </Link>
@@ -135,7 +134,8 @@ export default function Home() {
 
           <div className="lg:w-1/2 relative flex justify-center lg:justify-end" data-aos="fade-left">
             <div className="relative w-full max-w-[500px] aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700">
-              <Image src="/images/avtt.jpg" alt="Trần Trung Tín" fill className="object-cover" priority />
+              {/* SỬ DỤNG BIẾN AVATAR PATH */}
+              <Image src={avatarPath} alt="Trần Trung Tín" fill className="object-cover" priority />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent"></div>
               <div className="absolute bottom-8 left-8 text-white">
                 <p className="font-mono text-[10px] tracking-widest uppercase opacity-70">Portfolio 2024</p>
@@ -146,7 +146,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PHẦN NỘI DUNG CHI TIẾT */}
+        {/* NỘI DUNG CHI TIẾT */}
         <AnimatePresence>
           {showDetails && (
             <motion.div 
