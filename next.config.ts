@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // Chắc chắn dòng này phải đúng tên repo của bạn
+  // Tên repo của bạn là ttinportfolio, nên basePath phải y hệt
   basePath: "/ttinportfolio", 
 };
 
