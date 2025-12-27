@@ -6,6 +6,10 @@ import { FaGamepad, FaBook, FaCode, FaMusic, FaPlane } from "react-icons/fa";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+// Khai báo đường dẫn ảnh ở đây
+const REPO_PATH = "/ttinportfolio"; 
+const avatarPath = `${REPO_PATH}/images/avt2.jpg`;
+
 export default function About() {
   useEffect(() => {
     AOS.init({
@@ -23,7 +27,7 @@ export default function About() {
         <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-indigo-200/30 blur-[120px] rounded-full"></div>
       </div>
 
-      {/* HEADER - Cập nhật vị trí Share nằm giữa Skills và Contact */}
+      {/* HEADER */}
       <header className="fixed top-0 left-0 right-0 bg-white/60 backdrop-blur-xl z-50 border-b border-white/40">
         <div className="max-w-6xl mx-auto flex justify-between items-center px-8 py-5">
           <Link href="/" className="group flex items-center gap-2 font-black text-xl tracking-tighter">
@@ -36,10 +40,7 @@ export default function About() {
             <Link href="/" className="hover:text-black transition-colors">Home</Link>
             <Link href="/about" className="text-blue-600 border-b-2 border-blue-600 pb-1">About</Link>
             <Link href="/skills" className="hover:text-black transition-colors">Skills</Link>
-            
-            {/* Share nằm giữa Skills và Contact */}
             <Link href="/share" className="hover:text-black transition-colors">Share</Link>
-            
             <Link href="/contact" className="hover:text-black transition-colors uppercase font-bold text-slate-400">
               Contact
             </Link>
@@ -71,12 +72,14 @@ export default function About() {
             {/* LEFT COLUMN - Avatar */}
             <div className="flex flex-col items-center md:w-1/3 sticky top-40" data-aos="fade-right">
               <div className="relative w-64 h-80 rounded-[2rem] overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700">
+                {/* --- PHẦN ĐÃ SỬA: Dùng {} để gọi biến --- */}
                 <Image
-                  src="`${REPO_PATH}/images/avt2.jpg`"
+                  src={avatarPath}
                   alt="Trần Trung Tín"
                   fill
                   className="object-cover"
                   priority
+                  unoptimized={true} // Thêm dòng này nếu ảnh local không hiện khi deploy
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
               </div>
