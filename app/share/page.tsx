@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image'; // Import thêm Image
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,8 +10,13 @@ import {
   FaBrain, FaUserTie, FaSearch, FaStar, FaGlobeAmericas 
 } from 'react-icons/fa';
 
+// --- CẤU HÌNH ĐƯỜNG DẪN GỐC ---
+const REPO_PATH = "/ttinportfolio";
+const avatarPath = `${REPO_PATH}/images/avtt.jpg`;
+
 export default function SharePage() {
   const [filter, setFilter] = useState('All');
+  const [isProfileOpen, setIsProfileOpen] = useState(false); // State quản lý Modal Profile
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: false });
@@ -19,14 +25,13 @@ export default function SharePage() {
   const categories = ['All', 'English', 'Soft Skills', 'Technical', 'Academic'];
 
   const resources = [
-    // --- TIẾNG ANH ---
     {
       title: "English for Developers",
       desc: "Kho tài liệu tổng hợp từ vựng, mẫu câu và phương pháp học tiếng Anh dành riêng cho Dev.",
       icon: <FaLanguage />,
       tag: "English",
       color: "bg-sky-500",
-      link: "https://github.com/basecamp/handbook" // Handbook giao tiếp chuyên nghiệp
+      link: "https://github.com/basecamp/handbook"
     },
     {
       title: "FreeCodeCamp News",
@@ -36,7 +41,6 @@ export default function SharePage() {
       color: "bg-blue-600",
       link: "https://www.freecodecamp.org/news/"
     },
-    // --- KỸ NĂNG MỀM ---
     {
       title: "The Agile Manifesto",
       desc: "Tìm hiểu về tư duy Agile và Scrum - kỹ năng phối hợp team sống còn trong các công ty IT.",
@@ -53,7 +57,6 @@ export default function SharePage() {
       color: "bg-purple-500",
       link: "https://www.calnewport.com/blog/"
     },
-    // --- HỌC THUẬT & ĐIỀU MỚI ---
     {
       title: "CS50: Intro to Computer Science",
       desc: "Khóa học học thuật đỉnh cao của Harvard về tư duy máy tính, thuật toán và cấu trúc dữ liệu.",
@@ -70,7 +73,6 @@ export default function SharePage() {
       color: "bg-amber-500",
       link: "https://www.cloudskillsboost.google/paths/118"
     },
-    // --- KỸ NĂNG KỸ THUẬT (TECHNICAL) ---
     {
       title: "Fullstack Roadmap 2024",
       desc: "Bản đồ chi tiết giúp bạn định vị mình đang ở đâu và cần học gì tiếp theo để thành Senior.",
@@ -96,6 +98,31 @@ export default function SharePage() {
   return (
     <div className="min-h-screen bg-[#f8faff] text-slate-900 font-sans selection:bg-blue-100 overflow-x-hidden relative">
       
+      {/* 1. MODAL PROFILE (GIỐNG TRANG HOME & PROJECT) */}
+      <AnimatePresence>
+        {isProfileOpen && (
+          <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsProfileOpen(false)}
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md cursor-pointer"
+            />
+            <motion.div 
+              initial={{ scale: 0.5, opacity: 0, rotate: -5 }}
+              animate={{ scale: 1, opacity: 1, rotate: 0 }}
+              exit={{ scale: 0.5, opacity: 0, rotate: 5 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-sm aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white z-10"
+            >
+              <Image src={avatarPath} alt="Profile" fill className="object-cover" unoptimized />
+              <button onClick={() => setIsProfileOpen(false)} className="absolute top-4 right-4 w-8 h-8 bg-black/50 text-white rounded-full flex items-center justify-center">✕</button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* BACKGROUND DECOR */}
       <div className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
         <div className="absolute top-[-5%] left-[-5%] w-[600px] h-[600px] bg-blue-200/30 blur-[130px] rounded-full animate-pulse"></div>
@@ -114,13 +141,13 @@ export default function SharePage() {
             <Link href="/" className="hover:text-black transition-colors">Home</Link>
             <Link href="/about" className="hover:text-black transition-colors">About</Link>
             <Link href="/skills" className="hover:text-black transition-colors">Skills</Link>
-            
-            {/* Share nằm giữa Skills và Contact */}
+            <Link href="/project" className="hover:text-black transition-colors">Project</Link>
             <Link href="/share" className="text-blue-600 border-b-2 border-blue-600 pb-1">Share</Link>
-            
-            <Link href="/contact" className="hover:text-black transition-colors">Contact</Link>
+            <Link href="/contact" className="hover:text-black transition-colors uppercase font-bold text-slate-400">Contact</Link>
           </nav>
           <div className="flex gap-4 text-slate-400 text-lg">
+             {/* THAY ĐỔI: ICON PROFILE MỞ MODAL */}
+             <button onClick={() => setIsProfileOpen(true)} className="hover:text-blue-600 transition-colors">👤</button> 
              <button className="hover:text-blue-600 transition-colors"><FaSearch size={18}/></button>
           </div>
         </div>
@@ -189,7 +216,6 @@ export default function SharePage() {
                   <span className="text-[9px] font-black text-purple-600 uppercase tracking-widest px-3 py-1 bg-purple-50 rounded-lg">
                     {item.tag}
                   </span>
-                  {/* Cập nhật thẻ a để mở link ngoài đúng chuẩn */}
                   <a 
                     href={item.link} 
                     target="_blank" 
@@ -206,13 +232,13 @@ export default function SharePage() {
 
         {/* INSPIRATION QUOTE */}
         <section data-aos="zoom-in" className="mt-32 relative py-20 px-10 rounded-[4rem] text-center overflow-hidden border-2 border-dashed border-slate-200">
-           <div className="max-w-3xl mx-auto space-y-6">
+            <div className="max-w-3xl mx-auto space-y-6">
               <FaLightbulb className="text-4xl mx-auto text-yellow-500 animate-pulse" />
               <h2 className="text-3xl font-black uppercase tracking-tighter">"Sharing is Growing"</h2>
               <p className="text-slate-500 font-light italic text-lg">
                 Học một mình có thể đi nhanh, nhưng cùng nhau chia sẻ kiến thức chúng ta sẽ đi xa hơn.
               </p>
-           </div>
+            </div>
         </section>
       </main>
 
@@ -222,7 +248,7 @@ export default function SharePage() {
             © {new Date().getFullYear()} / TRUNG TIN PORTFOLIO
         </p>
         <div className="flex gap-8 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-           <Link href="/contact" className="hover:text-purple-600 transition-colors">Đề xuất thêm tài liệu</Link>
+            <Link href="/contact" className="hover:text-purple-600 transition-colors">Đề xuất thêm tài liệu</Link>
         </div>
       </footer>
     </div>

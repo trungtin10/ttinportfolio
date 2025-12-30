@@ -78,7 +78,6 @@ export default function SkillsPage() {
     }
   ];
 
-  // --- CẬP NHẬT ĐƯỜNG DẪN ẢNH VỚI BIẾN REPO_PATH ---
   const certificates: Certificate[] = [
     {
       title: "Networking Basics",
@@ -151,7 +150,7 @@ export default function SkillsPage() {
         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-200/30 blur-[120px] rounded-full"></div>
       </div>
 
-      {/* HEADER */}
+      {/* HEADER - ĐÃ CẬP NHẬT THÊM PROJECT */}
       <header className="fixed top-0 left-0 right-0 bg-white/60 backdrop-blur-xl z-50 border-b border-white/40">
         <div className="max-w-6xl mx-auto flex justify-between items-center px-8 py-5">
           <Link href="/" className="group flex items-center gap-2 font-black text-xl tracking-tighter">
@@ -163,6 +162,10 @@ export default function SkillsPage() {
             <Link href="/" className="hover:text-black transition-colors">Home</Link>
             <Link href="/about" className="hover:text-black transition-colors">About</Link>
             <Link href="/skills" className="text-blue-600 border-b-2 border-blue-600 pb-1">Skills</Link>
+            
+            {/* MỤC PROJECT MỚI TRÊN HEADER */}
+            <Link href="/project" className="hover:text-black transition-colors">Project</Link>
+            
             <Link href="/share" className="hover:text-black transition-colors">Share</Link>
             <Link href="/contact" className="hover:text-black transition-colors uppercase font-bold text-slate-400">
               Contact

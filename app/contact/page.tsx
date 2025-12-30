@@ -1,23 +1,26 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image'; // Import thêm Image
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaFacebook, FaInstagram, FaSearch } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
 
+// --- CẤU HÌNH ĐƯỜNG DẪN GỐC ---
+const REPO_PATH = "/ttinportfolio";
+const avatarPath = `${REPO_PATH}/images/avtt.jpg`;
+
 export default function ContactPage() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false); // State quản lý Modal Profile
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Khởi tạo hiệu ứng cuộn trang
     AOS.init({ duration: 1000, once: false });
   }, []);
 
-  // HÀM XỬ LÝ GỬI FORM VỀ GMAIL QUA FORMSPREE
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -26,7 +29,6 @@ export default function ContactPage() {
     const formData = new FormData(form);
 
     try {
-      // Sử dụng ID xjgvkrgk mà bạn đã cung cấp
       const response = await fetch("https://formspree.io/f/xjgvkrgk", {
         method: "POST",
         body: formData,
@@ -38,7 +40,6 @@ export default function ContactPage() {
       if (response.ok) {
         setIsSubmitted(true);
         form.reset();
-        // Sau 5 giây tự động ẩn thông báo thành công
         setTimeout(() => setIsSubmitted(false), 5000);
       } else {
         alert("Có lỗi xảy ra khi gửi. Vui lòng kiểm tra lại cấu hình Formspree!");
@@ -53,24 +54,26 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[#f8faff] text-slate-900 font-sans selection:bg-blue-100 overflow-x-hidden relative">
       
-      {/* 1. MODAL CONTACT NHANH (Đồng bộ hệ thống) */}
+      {/* 1. MODAL PROFILE (ĐỒNG BỘ CÁC TRANG) */}
       <AnimatePresence>
-        {isContactOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsContactOpen(false)} className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" />
-            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="relative w-full max-w-lg bg-white rounded-[2.5rem] p-10 shadow-2xl">
-              <button onClick={() => setIsContactOpen(false)} className="absolute top-6 right-6 text-slate-400 hover:text-black transition-colors text-xl">✕</button>
-              <div className="text-center space-y-6">
-                <div className="w-20 h-20 bg-blue-600 rounded-3xl mx-auto flex items-center justify-center text-white text-3xl shadow-lg shadow-blue-200">✉</div>
-                <h2 className="text-3xl font-black tracking-tight">Liên hệ nhanh</h2>
-                <div className="grid gap-4 pt-4 text-left">
-                  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Email</p>
-                    <p className="font-bold text-slate-700">tintran2k4@gmail.com</p>
-                  </div>
-                </div>
-                <button onClick={() => setIsContactOpen(false)} className="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold text-[10px] tracking-[0.2em] uppercase hover:bg-blue-600 transition-all shadow-lg">Đóng lại</button>
-              </div>
+        {isProfileOpen && (
+          <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsProfileOpen(false)}
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md cursor-pointer"
+            />
+            <motion.div 
+              initial={{ scale: 0.5, opacity: 0, rotate: -5 }}
+              animate={{ scale: 1, opacity: 1, rotate: 0 }}
+              exit={{ scale: 0.5, opacity: 0, rotate: 5 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-sm aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white z-10"
+            >
+              <Image src={avatarPath} alt="Profile" fill className="object-cover" unoptimized />
+              <button onClick={() => setIsProfileOpen(false)} className="absolute top-4 right-4 w-8 h-8 bg-black/50 text-white rounded-full flex items-center justify-center text-xs">✕</button>
             </motion.div>
           </div>
         )}
@@ -79,10 +82,10 @@ export default function ContactPage() {
       {/* BACKGROUND DECOR */}
       <div className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
         <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-blue-200/40 blur-[130px] rounded-full animate-pulse"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-200/30 blur-[120px] rounded-full"></div>
+        <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-indigo-200/30 blur-[120px] rounded-full"></div>
       </div>
 
-      {/* HEADER - CẬP NHẬT LOGO T VÀ VỊ TRÍ SHARE */}
+      {/* HEADER */}
       <header className="fixed top-0 left-0 right-0 bg-white/60 backdrop-blur-xl z-50 border-b border-white/40">
         <div className="max-w-6xl mx-auto flex justify-between items-center px-8 py-5">
           <Link href="/" className="group flex items-center gap-2 font-black text-xl tracking-tighter">
@@ -94,16 +97,13 @@ export default function ContactPage() {
             <Link href="/" className="hover:text-black transition-colors">Home</Link>
             <Link href="/about" className="hover:text-black transition-colors">About</Link>
             <Link href="/skills" className="hover:text-black transition-colors">Skills</Link>
-            
-            {/* Share nằm giữa Skills và Contact */}
-            <Link href="/share" className="hover:text-black transition-colors uppercase font-bold text-slate-400">
-              Share
-            </Link>
-            
+            <Link href="/project" className="hover:text-black transition-colors">Project</Link>
+            <Link href="/share" className="hover:text-black transition-colors">Share</Link>
             <Link href="/contact" className="text-blue-600 border-b-2 border-blue-600 pb-1">Contact</Link>
           </nav>
           <div className="flex gap-4 text-slate-400 text-lg">
-             <button onClick={() => setIsContactOpen(true)} className="hover:text-blue-600 transition-colors">👤</button> 
+             {/* SỬA LẠI: NÚT ICON PROFILE ĐỂ MỞ MODAL ẢNH */}
+             <button onClick={() => setIsProfileOpen(true)} className="hover:text-blue-600 transition-colors">👤</button> 
              <button className="hover:text-blue-600 transition-colors"><FaSearch size={18}/></button>
           </div>
         </div>
@@ -113,7 +113,7 @@ export default function ContactPage() {
       <main className="pt-48 pb-20 w-full max-w-6xl mx-auto px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           
-          {/* LEFT: INFO & SOCIAL LINKS */}
+          {/* LEFT: INFO */}
           <div className="space-y-12" data-aos="fade-right">
             <div className="space-y-4">
               <span className="text-blue-600 font-mono text-[10px] tracking-[0.4em] uppercase font-bold">// Say Hello</span>
@@ -155,7 +155,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* SOCIAL ICONS */}
             <div className="flex gap-6 pt-6">
               <a href="https://facebook.com/ttindeptrai/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white rounded-2xl shadow-md text-slate-400 hover:text-blue-600 transition-all hover:-translate-y-1">
                 <FaFacebook size={24} />
@@ -206,7 +205,6 @@ export default function ContactPage() {
                 </button>
               </form>
 
-              {/* Lớp phủ thông báo thành công */}
               <AnimatePresence>
                 {isSubmitted && (
                   <motion.div 

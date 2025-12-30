@@ -10,9 +10,6 @@ export default function Home() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
-  // --- QUAN TRỌNG: Cấu hình đường dẫn ảnh ---
-  // Vì web chạy trên GitHub Pages trong thư mục /ttinportfolio
-  // nên phải thêm tiền tố này vào trước đường dẫn ảnh.
   const REPO_PATH = "/ttinportfolio"; 
   const avatarPath = `${REPO_PATH}/images/avtt.jpg`;
 
@@ -62,7 +59,6 @@ export default function Home() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="relative w-full max-w-sm aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white z-10"
             >
-              {/* SỬ DỤNG BIẾN AVATAR PATH */}
               <Image src={avatarPath} alt="Profile" fill className="object-cover" />
               <button onClick={() => setIsProfileOpen(false)} className="absolute top-4 right-4 w-8 h-8 bg-black/50 text-white rounded-full flex items-center justify-center">✕</button>
             </motion.div>
@@ -76,7 +72,7 @@ export default function Home() {
         <div className="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] bg-sky-100/50 blur-[120px] rounded-full"></div>
       </div>
 
-      {/* HEADER */}
+      {/* HEADER - ĐÃ THÊM PROJECT */}
       <header className="fixed top-0 left-0 right-0 bg-white/60 backdrop-blur-xl z-50 border-b border-white/40">
         <div className="max-w-6xl mx-auto flex justify-between items-center px-8 py-5">
           <Link href="/" className="group flex items-center gap-2 font-black text-xl tracking-tighter">
@@ -89,6 +85,10 @@ export default function Home() {
             <Link href="/" className="text-blue-600 border-b-2 border-blue-600 pb-1">Home</Link>
             <Link href="/about" className="hover:text-black transition-colors">About</Link>
             <Link href="/skills" className="hover:text-black transition-colors">Skills</Link>
+            
+            {/* LINK PROJECT MỚI */}
+            <Link href="/project" className="hover:text-black transition-colors">Project</Link>
+            
             <Link href="/share" className="hover:text-black transition-colors">Share</Link>
             <Link href="/contact" className="hover:text-black transition-colors uppercase font-bold text-slate-400">
               Contact
@@ -134,11 +134,10 @@ export default function Home() {
 
           <div className="lg:w-1/2 relative flex justify-center lg:justify-end" data-aos="fade-left">
             <div className="relative w-full max-w-[500px] aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700">
-              {/* SỬ DỤNG BIẾN AVATAR PATH */}
               <Image src={avatarPath} alt="Trần Trung Tín" fill className="object-cover" priority />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent"></div>
               <div className="absolute bottom-8 left-8 text-white">
-                <p className="font-mono text-[10px] tracking-widest uppercase opacity-70">Portfolio 2024</p>
+                <p className="font-mono text-[10px] tracking-widest uppercase opacity-70">Portfolio 2025</p>
                 <h2 className="text-2xl font-bold tracking-tight">Trần Trung Tín</h2>
               </div>
             </div>
@@ -165,18 +164,16 @@ export default function Home() {
                   </div>
                   
                   <div className="grid md:grid-cols-2 gap-10">
-                    <div className="group relative p-10 rounded-[3rem] bg-white border border-slate-100 shadow-xl hover:-translate-y-2 transition-all overflow-hidden">
+                    <div className="group relative p-10 rounded-[3rem] bg-white border border-slate-100 shadow-xl hover:-translate-y-2 transition-all overflow-hidden text-center md:text-left">
                       <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[5rem] -z-10 group-hover:bg-blue-600 transition-colors"></div>
                       <h3 className="text-3xl font-bold mb-4 group-hover:text-blue-600 transition-colors">Lập trình Web & Hệ thống</h3>
                       <p className="text-slate-500 text-lg font-light">Phát triển ứng dụng hiện đại với React, Next.js và kiến trúc Backend tối ưu.</p>
-                      {/* Đã xóa Link Xem chi tiết */}
                     </div>
 
-                    <div className="group relative p-10 rounded-[3rem] bg-white border border-slate-100 shadow-xl hover:-translate-y-2 transition-all overflow-hidden">
+                    <div className="group relative p-10 rounded-[3rem] bg-white border border-slate-100 shadow-xl hover:-translate-y-2 transition-all overflow-hidden text-center md:text-left">
                       <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-[5rem] -z-10 group-hover:bg-indigo-600 transition-colors"></div>
                       <h3 className="text-3xl font-bold mb-4 group-hover:text-indigo-600 transition-colors">Kỹ thuật phần mềm</h3>
                       <p className="text-slate-500 text-lg font-light">Áp dụng Clean Code, nguyên lý SOLID và tư duy giải quyết vấn đề thực tế.</p>
-                      {/* Đã xóa Link Xem chi tiết */}
                     </div>
                   </div>
                 </section>
