@@ -46,7 +46,7 @@ export default function ProjectPage() {
       description: "Ứng dụng học tiếng Anh tích hợp AI nhận diện giọng nói (Vosk).",
       longDescription: "Ứng dụng di động hỗ trợ học tiếng Anh toàn diện, được xây dựng bằng Flutter kết hợp với Backend Node.js (Express). Điểm nổi bật là tính năng Luyện nói (Speaking) sử dụng mô hình AI Vosk để chuyển đổi giọng nói thành văn bản và chấm điểm phát âm. Hệ thống bao gồm các module: Học từ vựng (Flashcard), Bài tập trắc nghiệm (Quiz), Mini Game lật thẻ và Lộ trình học tập cá nhân hóa.",
       tech: ["Flutter", "Node.js", "Express", "Vosk AI", "Firebase"], // Cập nhật tech stack
-      image: `${REPO_PATH}/images/tt7.png`,
+      image: `${REPO_PATH}/images/nentt.jpg`,
       // CẬP NHẬT: Thêm gallery chờ sẵn hình ảnh mới
       gallery: [
         `${REPO_PATH}/images/tt1.png`, // Bạn hãy thêm hình Giao diện chính/Lộ trình vào đây
