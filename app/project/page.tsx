@@ -96,7 +96,7 @@ export default function ProjectPage() {
       description: "Phần mềm quản lý quán cà phê chuyên nghiệp (Mô hình 3 lớp).",
       longDescription: "Hệ thống quản lý quán cà phê được xây dựng chặt chẽ theo kiến trúc 3-Layer (Presentation, BLL, DAL). Phần mềm bao gồm các module: Đăng nhập bảo mật, Sơ đồ bàn trực quan (đổi bàn, gộp bàn), Order món, Quản lý Menu/Nhân viên (CRUD) và Xuất hóa đơn tự động.",
       tech: ["C#", "WinForms", "3-Layer Architecture", "SQL Server"],
-      image: `${REPO_PATH}/images/coffee.png`,
+      image: `${REPO_PATH}/images/logocoffe.png`,
       gallery: [
         `${REPO_PATH}/images/c1.png`,
         `${REPO_PATH}/images/c2.png`,
