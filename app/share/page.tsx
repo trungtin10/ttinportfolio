@@ -1,22 +1,25 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Import thêm Image
+import Image from 'next/image';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion, AnimatePresence } from 'framer-motion';
+// Import icon Google Drive
 import { 
   FaShareAlt, FaBook, FaCode, FaLightbulb, FaLanguage, 
-  FaBrain, FaUserTie, FaSearch, FaStar, FaGlobeAmericas 
+  FaBrain, FaUserTie, FaSearch, FaStar, FaGlobeAmericas, FaGoogleDrive 
 } from 'react-icons/fa';
 
-// --- CẤU HÌNH ĐƯỜNG DẪN GỐC ---
+// Import Giscus (nếu dùng comment)
+import Giscus from '@giscus/react'; 
+
 const REPO_PATH = "/ttinportfolio";
 const avatarPath = `${REPO_PATH}/images/avtt.jpg`;
 
 export default function SharePage() {
   const [filter, setFilter] = useState('All');
-  const [isProfileOpen, setIsProfileOpen] = useState(false); // State quản lý Modal Profile
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: false });
@@ -25,6 +28,34 @@ export default function SharePage() {
   const categories = ['All', 'English', 'Soft Skills', 'Technical', 'Academic'];
 
   const resources = [
+    // --- 1. KHO TÀI LIỆU TIẾNG ANH ---
+    {
+      title: "Kho Tài Liệu Tiếng Anh",
+      desc: "Tổng hợp các giáo trình, tài liệu luyện thi và từ vựng tiếng Anh mình lưu trữ trên Google Drive.",
+      icon: <FaGoogleDrive />,
+      tag: "English",
+      color: "bg-green-600",
+      link: "https://drive.google.com/drive/folders/1d_8KCi7oxtNUv8zuaUYgqXPO0S10MpM9?usp=sharing"
+    },
+    // --- 2. PROJECT REPOSITORY ---
+    {
+      title: "Project Repository",
+      desc: "Thư mục lưu trữ source code, tài liệu thiết kế và các dự án thực tế mình đã triển khai.",
+      icon: <FaGoogleDrive />, 
+      tag: "Technical",
+      color: "bg-blue-700",
+      link: "https://drive.google.com/drive/folders/1scD5MySZ4w0CH5fKT_L6peivVEly1jfG?usp=sharing"
+    },
+    // --- 3. TÀI LIỆU BỔ SUNG (LINK MỚI BẠN GỬI) ---
+    {
+      title: "Tài Liệu Bổ Sung", // <--- BẠN HÃY SỬA TÊN LẠI CHO PHÙ HỢP
+      desc: "Thư mục tài liệu tham khảo mở rộng được lưu trữ trên Google Drive.", // <--- SỬA MÔ TẢ
+      icon: <FaGoogleDrive />,
+      tag: "Academic", // Chọn tag: English, Soft Skills, Technical, Academic
+      color: "bg-indigo-600", // Màu Indigo
+      link: "https://drive.google.com/drive/folders/1LiLNNVSJyDmlkzJ5Megd9YVwOTbwRaFM"
+    },
+    // -------------------------------
     {
       title: "English for Developers",
       desc: "Kho tài liệu tổng hợp từ vựng, mẫu câu và phương pháp học tiếng Anh dành riêng cho Dev.",
@@ -98,7 +129,7 @@ export default function SharePage() {
   return (
     <div className="min-h-screen bg-[#f8faff] text-slate-900 font-sans selection:bg-blue-100 overflow-x-hidden relative">
       
-      {/* 1. MODAL PROFILE (GIỐNG TRANG HOME & PROJECT) */}
+      {/* MODAL PROFILE */}
       <AnimatePresence>
         {isProfileOpen && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
@@ -146,7 +177,6 @@ export default function SharePage() {
             <Link href="/contact" className="hover:text-black transition-colors uppercase font-bold text-slate-400">Contact</Link>
           </nav>
           <div className="flex gap-4 text-slate-400 text-lg">
-             {/* THAY ĐỔI: ICON PROFILE MỞ MODAL */}
              <button onClick={() => setIsProfileOpen(true)} className="hover:text-blue-600 transition-colors">👤</button> 
              <button className="hover:text-blue-600 transition-colors"><FaSearch size={18}/></button>
           </div>
@@ -240,6 +270,12 @@ export default function SharePage() {
               </p>
             </div>
         </section>
+
+        {/* KHU VỰC BÌNH LUẬN */}
+        {/* <div className="mt-24 max-w-4xl mx-auto" data-aos="fade-up">
+           <Giscus ... />
+        </div> */}
+
       </main>
 
       {/* FOOTER */}
